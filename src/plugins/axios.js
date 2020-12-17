@@ -4,7 +4,7 @@ import qs from 'qs'
 import store from '@/store'
 import Api from '@/api'
 
-const vToast = Vue.prototype.$toast // 轻提示
+const message = Vue.prototype.$dialog
 let loadTimeOutId = null
 
 axios.defaults.baseURL = process.env.VUE_APP_API
@@ -25,7 +25,7 @@ axios.interceptors.request.use(
         return config
     },
     error => {
-        vToast.error('请求异常')
+        message.error('请求异常')
         store.commit('setLoading', false) // 关闭加载遮罩
         return Promise.error(error)
     }
@@ -35,7 +35,7 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
     response => {
         if (response.data.code != 0) {
-            response.data.msg && vToast.error(response.data.msg)
+            response.data.msg && message.error(response.data.msg)
             store.commit('setLoading', false) // 关闭加载遮罩
             return Promise.resolve(response.data)
         }
@@ -46,7 +46,7 @@ axios.interceptors.response.use(
         return Promise.resolve(response.data)
     },
     error => {
-        vToast.error('响应异常')
+        message.error('响应异常')
         // store.state.token = true
         store.commit('setLoading', false) // 关闭加载遮罩
         return Promise.reject(error)

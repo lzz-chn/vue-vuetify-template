@@ -13,6 +13,7 @@ export default {
     data: () => ({}),
     mounted() {
         // this.axiosExample()
+        this.vuetifyDialogExample()
     },
     methods: {
         // http请求示例
@@ -21,6 +22,30 @@ export default {
             if (res) {
                 console.log('res :>> ', res)
             }
+        },
+        // vuetify-dialog示例
+        async vuetifyDialogExample() {
+            // toast
+            this.$dialog.message.success('Toast', { position: 'top' })
+            // notification
+            this.$dialog.notify.info('Notification', { position: 'top-right' })
+            // confirm
+            let res = await this.$dialog.warning({
+                text: 'Do you really want to exit?',
+                title: 'Warning'
+            })
+            console.log(res)
+            // prompt
+            res = await this.$dialog.prompt({
+                title: 'Password balidation',
+                text: 'Enter your password',
+                rules: [v => v.length >= 6 || 'Password must be at least 6 characters long'], // vuetify's v-text-field rules prop
+                textField: {
+                    // Any addtional props/attrs that will be binded to v-text-field component
+                    type: 'password'
+                }
+            })
+            console.log(res)
         }
     }
 }
