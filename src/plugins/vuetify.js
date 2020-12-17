@@ -9,7 +9,7 @@ const vuetify = new Vuetify({
     lang: { locales: { zhHans }, current: 'zhHans' },
     icons: { iconfont: 'mdi' }
 })
-console.log('vuetify.config :>> ', Vuetify.config);
+
 Vue.use(Vuetify)
 Vue.use(VuetifyDialog, {
     context: { vuetify },
