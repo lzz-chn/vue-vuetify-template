@@ -5,6 +5,8 @@ import store from '@/store'
 import Api from '@/api'
 
 const vToast = Vue.prototype.$toast // 轻提示
+let loadTimeOutId = null
+
 axios.defaults.baseURL = process.env.VUE_APP_API
 
 // 请求拦截器
@@ -19,6 +21,7 @@ axios.interceptors.request.use(
         //     config.url += '/mock' // 使用模拟数据
         // }
         store.commit('setLoading', true) // 开启加载遮罩
+        loadTimeOutId && clearTimeout(loadTimeOutId)
         return config
     },
     error => {
@@ -37,7 +40,9 @@ axios.interceptors.response.use(
             return Promise.resolve(response.data)
         }
         // store.state.token = true
-        store.commit('setLoading', false) // 关闭加载遮罩
+        loadTimeOutId = setTimeout(() => {
+            store.commit('setLoading', false) // 关闭加载遮罩
+        }, 400)
         return Promise.resolve(response.data)
     },
     error => {
