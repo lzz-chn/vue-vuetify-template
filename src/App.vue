@@ -1,5 +1,7 @@
 <template>
     <v-app>
+        <!-- mdi 引入示例 -->
+        <v-icon size="50" color="primary">$account</v-icon>
         <router-view></router-view>
         <v-overlay :value="$store.state.loading" opacity="0.7">
             <v-progress-circular indeterminate size="64"></v-progress-circular>
@@ -26,7 +28,7 @@ export default {
         // vuetify-dialog示例
         async vuetifyDialogExample() {
             // toast
-            this.$dialog.message.success('Toast', { position: 'top' })
+            this.$toast.success('Toast')
             // notification
             this.$dialog.notify.info('Notification', { position: 'top-right' })
             // confirm

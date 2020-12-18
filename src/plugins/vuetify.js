@@ -3,11 +3,16 @@ import Vuetify from 'vuetify/lib'
 import zhHans from 'vuetify/es5/locale/zh-Hans'
 import VuetifyDialog from 'vuetify-dialog'
 import 'vuetify-dialog/dist/vuetify-dialog.css'
-import '@mdi/font/css/materialdesignicons.css'
+import { mdiAccount } from '@mdi/js'
 
 const vuetify = new Vuetify({
     lang: { locales: { zhHans }, current: 'zhHans' },
-    icons: { iconfont: 'mdi' }
+    icons: {
+        iconfont: 'mdiSvg',
+        values: {
+            account: mdiAccount  // 组件中直接引入即可 <v-icon>$account</v-icon>
+        }
+    }
 })
 
 Vue.use(Vuetify)
