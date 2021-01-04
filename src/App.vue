@@ -15,7 +15,7 @@ export default {
     data: () => ({}),
     mounted() {
         // this.axiosExample()
-        this.vuetifyDialogExample()
+        // this.vuetifyDialogExample()
     },
     methods: {
         // http请求示例
@@ -32,10 +32,7 @@ export default {
             // notification
             this.$dialog.notify.info('Notification', { position: 'top-right' })
             // confirm
-            let res = await this.$dialog.warning({
-                text: 'Do you really want to exit?',
-                title: 'Warning'
-            })
+            let res = await this.$dialog.warning({ text: 'Do you really want to exit?' })
             console.log(res)
             // prompt
             res = await this.$dialog.prompt({

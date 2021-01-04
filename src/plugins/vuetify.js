@@ -18,6 +18,9 @@ const vuetify = new Vuetify({
 Vue.use(Vuetify)
 Vue.use(VuetifyDialog, {
     context: { vuetify },
+    warning: {
+        title: '提示'
+    },
     actions: {
         false: { text: '取消' },
         true: { text: '确认', color: 'primary' }
